@@ -15,4 +15,24 @@ if ($conn->connect_error) {
 
 
 //$sql = "SELECT * FROM videos";
+//$result = $conn->query($sql);
+//$row = $result->fetch_assoc()
+
+// then to pull use the row with this asthe alias
+// $videoName = $row['description'];
+
+/* try {
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $stmt = $pdo->query("SELECT date, text FROM your_table");
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    echo json_encode($data);
+} catch (PDOException $e) {
+    ec/ho json_encode(['error' => $e->getMessage()]);
+} */
+
+
+$conn->close();
 ?>
