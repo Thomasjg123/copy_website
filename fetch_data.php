@@ -1,21 +1,18 @@
 <?php
-header('Content-Type: application/json');
+//header('Content-Type: application/json');
 
 // Database connection
-$host = 'localhost';
+$host = 'mysql';
 $dbname = 'your_database';
 $username = 'your_username';
 $password = 'your_password';
 
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$conn = new mysqli($host, $username, $password, $dbname);
 
-    $stmt = $pdo->query("SELECT date, text FROM your_table");
-    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    echo json_encode($data);
-} catch (PDOException $e) {
-    echo json_encode(['error' => $e->getMessage()]);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
+
+
+//$sql = "SELECT * FROM videos";
 ?>
