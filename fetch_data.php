@@ -3,15 +3,15 @@
 
 // Database connection
 $host = 'mysql';
-$dbname = 'your_database';
-$username = 'your_username';
-$password = 'your_password';
-
+$dbname = 'messages';
+$username = 'root';
+$password = 'password123';
+/* 
 $conn = new mysqli($host, $username, $password, $dbname);
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
-}
+} */
 
 
 //$sql = "SELECT * FROM videos";
@@ -21,7 +21,7 @@ if ($conn->connect_error) {
 // then to pull use the row with this asthe alias
 // $videoName = $row['description'];
 
-/* try {
+try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -31,7 +31,7 @@ if ($conn->connect_error) {
     echo json_encode($data);
 } catch (PDOException $e) {
     ec/ho json_encode(['error' => $e->getMessage()]);
-} */
+}
 
 
 $conn->close();
