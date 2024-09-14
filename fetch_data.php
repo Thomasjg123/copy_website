@@ -16,9 +16,12 @@ if ($conn->connect_error) {
 
 $sql = "SELECT * FROM messages";
 $result = $conn->query($sql);
-$row = $result->fetch_assoc();
-echo $row['message'];
+while($row = $result->fetch_assoc())
+{
 
+
+    echo $row['message'];
+}
  //then to pull use the row with this asthe alias
 // $videoName = $row['description'];
 
