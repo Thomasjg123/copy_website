@@ -16,11 +16,19 @@ if ($conn->connect_error) {
 
 $sql = "SELECT * FROM messages";
 $result = $conn->query($sql);
-while($row = $result->fetch_assoc())
-{
 
 
-    echo $row['message'];
+$messages = [];
+
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        // Add each message to the array
+        $messages[] = [
+            'id' => $row['id'],
+            'timestamp' => $row['timestamp'],
+            'message' => $row['message']
+        ];
+    }
 }
  //then to pull use the row with this asthe alias
 // $videoName = $row['description'];
