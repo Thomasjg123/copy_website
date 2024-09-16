@@ -1,13 +1,39 @@
 <?php
-header('Content-Type: application/json');
+//header('Content-Type: application/json');
 
 // Database connection
-$host = 'localhost';
-$dbname = 'your_database';
-$username = 'your_username';
-$password = 'your_password';
+$host = 'mysql';
+$dbname = 'copier';
+$username = 'root';
+$password = 'password123';
 
-try {
+$conn = new mysqli($host, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+
+$sql = "SELECT * FROM messages";
+$result = $conn->query($sql);
+
+
+$messages = [];
+
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        // Add each message to the array
+        $messages[] = [
+            'id' => $row['id'],
+            'timestamp' => $row['timestamp'],
+            'message' => $row['message']
+        ];
+    }
+}
+ //then to pull use the row with this asthe alias
+// $videoName = $row['description'];
+
+/* try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -16,6 +42,9 @@ try {
 
     echo json_encode($data);
 } catch (PDOException $e) {
-    echo json_encode(['error' => $e->getMessage()]);
-}
+    ec/ho json_encode(['error' => $e->getMessage()]);
+} */
+echo json_encode($messages);
+
+$conn->close();
 ?>
