@@ -42,12 +42,13 @@
                 url: "fetch_data.php", // This is the PHP script from above
                 method: "GET",
                 success: function(data) {
+                    data = JSON.parse(data);
                     const tableBody = $("#messages-table tbody");
-                    data.forEach(function(row) {
+                    data.forEach((item) => {
                         const tableRow = `<tr>
-                            <td>${row.id}</td>
-                            <td>${row.timestamp}</td>
-                            <td>${row.message}</td>
+                            <td>${item.id}</td>
+                            <td>${item.timestamp}</td>
+                            <td>${item.message}</td>
                         </tr>`;
                         tableBody.append(tableRow);
                     });

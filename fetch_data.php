@@ -44,7 +44,7 @@ if ($result->num_rows > 0) {
 } catch (PDOException $e) {
     ec/ho json_encode(['error' => $e->getMessage()]);
 } */
-
+echo json_encode($messages);
 
 $conn->close();
 ?>
