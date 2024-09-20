@@ -20,7 +20,10 @@
             <!-- Table rows will be dynamically populated here -->
         </tbody>
     </table>
+    <button id="sendButton" onclick="sendMessage()">Send Message</button>
 
+    <!-- Placeholder to show success message -->
+    <p id="responseMessage"></p>
     <script>
         // JavaScript to fetch and display data
         document.addEventListener("DOMContentLoaded", function() {
@@ -50,6 +53,31 @@
                     console.error("An error occurred while fetching data:", error);
                 });
         });
+
+
+        function sendMessage() {
+            // Get the value from the text input field
+            const message = document.getElementById("textInput").value;
+
+            // Create a new FormData object to send the message
+            const formData = new FormData();
+            formData.append('message', message); // Append the message to the form data
+
+            // Send the POST request to add.php
+            fetch('add.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text()) // Parse the response as text (or use .json() if returning JSON)
+            .then(data => {
+                // Display the response from the server in the paragraph element
+                document.getElementById("responseMessage").innerText = "Server response: " + data;
+            })
+            .catch(error => {
+                // Handle any errors
+                console.error("Error occurred:", error);
+            });
+        }
     </script>
 </body>
 </html>
