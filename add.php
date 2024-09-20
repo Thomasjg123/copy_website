@@ -7,9 +7,9 @@ $dbname = 'copier';
 $username = 'root';
 $password = 'password123';
 
-echo $text;
+//echo $text;
 
-$text = 'Hello world from php';
+//$text = 'Hello world from php';
 
 
 // Create a connection
@@ -23,9 +23,9 @@ if ($conn->connect_error) {
  
     //This is the start of putting things in database
  
-      $sql = "INSERT INTO messages (message) VALUES '$text'";
+      $sql = "INSERT INTO messages (message) VALUES ('$text')";
 
-      echo $videoDesc;
+     // echo $videoDesc;
       if ($conn->query($sql) === TRUE) {
         echo "Your message was added";
     } else {
