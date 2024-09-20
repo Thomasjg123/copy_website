@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Table</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        td, th {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Messages Table</h2>
+    <table id="messages-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Timestamp</th>
+                <th>Message</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Table rows will be dynamically populated here -->
+        </tbody>
+    </table>
+
+    <script>
+        // JavaScript to fetch and display data
+        document.addEventListener("DOMContentLoaded", function() {
+            // Using fetch() to get the data
+            fetch("fetch_data.php")
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok " + response.statusText);
+                    }
+                    return response.json(); // Parse the response as JSON
+                })
+                .then(data => {
+                    const tableBody = document.querySelector("#messages-table tbody");
+
+                    // Loop through the JSON data and append rows to the table
+                    data.forEach((item) => {
+                        const tableRow = `<tr>
+                            <td>${item.id}</td>
+                            <td>${item.timestamp}</td>
+                            <td>${item.message}</td>
+                        </tr>`;
+                        tableBody.innerHTML += tableRow;
+                    });
+                })
+                .catch(error => {
+                    // Handle any errors
+                    console.error("An error occurred while fetching data:", error);
+                });
+        });
+    </script>
+</body>
+</html>
