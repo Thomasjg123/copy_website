@@ -26,7 +26,7 @@ if ($result->num_rows > 0) {
         $messages[] = [
             'id' => $row['id'],
             'timestamp' => $row['timestamp'],
-            'message' => $row['message']
+            'message' => nl2br($row['message'])
         ];
     }
 }

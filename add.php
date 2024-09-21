@@ -1,6 +1,6 @@
 <?
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
- $text = $_POST['message'];
+ 
   
   $host = 'mysql';
 $dbname = 'copier';
@@ -20,7 +20,8 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 
 }
- 
+
+$text = $conn->real_escape_string($_POST['message']);
     //This is the start of putting things in database
  
       $sql = "INSERT INTO messages (message) VALUES ('$text')";
